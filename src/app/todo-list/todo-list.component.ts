@@ -1,30 +1,30 @@
 import { Component } from '@angular/core';
 import { TodoService } from '../todo.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.scss'
+  styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
+  newTask: string = '';
+  constructor(private todoService: TodoService) {}
 
-  newTask: string='';
-  constructor(private todoService: TodoService){}
-
-  addTask():void{
-    if(this.newTask.trim()){
+  addTask(): void {
+    if (this.newTask.trim()) {
       this.todoService.addTask(this.newTask);
-      this.newTask='';
+      this.newTask = '';
     }
   }
 
-  getTasks(): string[]{
+  getTasks(): string[] {
     return this.todoService.getTasks();
   }
 
-  completeTask(index: number): void{
+  completeTask(index: number): void {
     this.todoService.completeTask(index);
   }
 
@@ -32,8 +32,7 @@ export class TodoListComponent {
     return this.todoService.getCompletedTask();
   }
 
-  deleteTask(index: number): void{
+  deleteTask(index: number): void {
     this.todoService.deleteTask(index);
   }
-
 }
