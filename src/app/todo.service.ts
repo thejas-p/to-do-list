@@ -11,6 +11,10 @@ export class TodoService {
     this.tasks.push(task);
   }
 
+  getTasks(): string[]{
+    return this.tasks;
+  }
+
   completeTask(index: number): void{
     const task=this.tasks.splice(index,1)[0];
     this.completedTasks.push(task);
